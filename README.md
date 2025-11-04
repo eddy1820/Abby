@@ -18,5 +18,5 @@ go run cmd/main.go
 ```
 
 🧩 Notes
-Make sure you have Swagger installed before running the swag init command.
-The server will run using the configuration specified in your .env file.
+Make sure you have Swagger installed before running the swag init command.  
+The server will run using the configuration specified in your .env file.  
