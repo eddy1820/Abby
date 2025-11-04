@@ -1,0 +1,83 @@
+basePath: /api/v1
+definitions:
+  api.SetValueRequest:
+    properties:
+      value:
+        example: "42"
+        type: string
+    required:
+    - value
+    type: object
+host: localhost:8081
+info:
+  contact: {}
+  description: 這是一個簡單的智能合約 API 服務
+  title: Simple Storage API
+  version: "1.0"
+paths:
+  /storage/value:
+    get:
+      consumes:
+      - application/json
+      description: 從智能合約中獲取當前存儲的值
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功返回存儲的值
+          schema:
+            properties:
+              value:
+                type: string
+            type: object
+        "500":
+          description: 內部錯誤
+          schema:
+            properties:
+              error:
+                type: string
+            type: object
+      summary: 獲取存儲的值
+      tags:
+      - storage
+    post:
+      consumes:
+      - application/json
+      description: 在智能合約中設置新的值
+      parameters:
+      - description: 要設置的新值
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/api.SetValueRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功設置值
+          schema:
+            properties:
+              message:
+                type: string
+            type: object
+        "400":
+          description: 請求格式錯誤
+          schema:
+            properties:
+              error:
+                type: string
+            type: object
+        "500":
+          description: 內部錯誤
+          schema:
+            properties:
+              error:
+                type: string
+            type: object
+      summary: 設置新的值
+      tags:
+      - storage
+schemes:
+- http
+swagger: "2.0"
